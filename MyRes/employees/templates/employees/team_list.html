@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Employee Teams</h1>
+    {% for team in teams %}
+        <h2>{{ team.name }}</h2>
+        <ul>
+            {% for employee in team.employees.all %}
+                <li>{{ employee.name }} - {{ employee.position }}</li>
+                {% for task in employee.task_set.all %}
+                    <li>{{ task.name }} - {{ task.duration }} hours</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}
